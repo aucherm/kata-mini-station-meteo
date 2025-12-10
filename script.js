@@ -44,10 +44,10 @@ btn.addEventListener("click", async () => {
 
     const coords = await fetchCoordinates(cityName);
     if (!coords) {
-        cityTitle.textContent = "Ville introuvable";
+        cityTitle.textContent = "Ville non trouvée";
         gpsDiv.textContent = "";
         temperatureDiv.textContent = "-°C";
-        detailsDiv.textContent = "Ville introuvable";
+        detailsDiv.textContent = "Vérifiez le nom de la ville";
         return;
     }
 
