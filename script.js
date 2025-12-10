@@ -3,6 +3,7 @@ const input = document.querySelector("#cityInput");
 const gpsDiv = document.querySelector("#gps");
 const cityTitle = document.querySelector("#city");
 const temperatureDiv = document.querySelector("#temperature");
+const detailsDiv = document.querySelector ("#details");
 
 
 async function fetchCoordinates(cityName) {
@@ -39,12 +40,14 @@ btn.addEventListener("click", async () => {
     cityTitle.textContent = "Chargement...";
     gpsDiv.textContent = "";
     temperatureDiv.textContent = "-°C";
+    detailsDiv.textContent = "Mise à jour en cours ..."
 
     const coords = await fetchCoordinates(cityName);
     if (!coords) {
         cityTitle.textContent = "Ville introuvable";
         gpsDiv.textContent = "";
         temperatureDiv.textContent = "-°C";
+        detailsDiv.textContent = "Ville introuvable";
         return;
     }
 
@@ -54,8 +57,10 @@ btn.addEventListener("click", async () => {
     const temp = await fetchWeather(coords.lat, coords.lon);
     if (temp !== null) {
         temperatureDiv.textContent = `${temp}°C`;
+        detailsDiv.textContent = `Température actuelle`;
 
     } else {
         temperatureDiv.textContent = `Température non disponible`;
+        detailsDiv.textContent = `Température non disponible`;
     }
 });
